@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Add new Performer to Song</title>
+    <style type = "text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+        table {
+            width:100%;
+        }
+        table, td, th {
+            border: 1px solid black;
+            padding:3px 2px;
+        }
+        section {
+            float: left;
+            margin: 0 1.5%;
+            width: 63%;
+        }
+        aside {
+            float: right;
+            margin: 0 1.5%;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Select the Song to add to the List of Songs </h1>
+</header>
+<section>
+    <h2>Select songs:</h2>
+    <!-- Make changes to this code to dynamically display radio buttons for each artist as in the example -->
+    <form th:method="POST" th:action="@{/artist/artist-details}">
+        <input type="hidden" name="id" th:value="${id}" />
+        <div th:each="song : ${songList}">
+            <input type="radio" name="songRadio" th:id="${song.getTrackId()}" th:value="${song.getTrackId()}">
+            <label th:for="${song.getTrackId()}" th:text="'Title: ' + ${song.getTitle()} + ', Genre: ' + ${song.getGenre()} + ', Release Year: ' + ${song.getReleaseYear()}"></label>
+            <br>
+        </div>
+        <br/>
+
+        <input type='submit' value='Add Song'>
+    </form>
+</section>
+<aside>
+    <table>
+        <tr>
+            <!-- change to show selected trackId -->
+            <td><b>Artist Id</b></td>
+            <td th:text="${id}">2</td>
+        </tr>
+    </table>
+</aside>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Artist to Song</title>
+</head>
+<body>
+<h1>Add an Artist to Song</h1>
+<p th:text="'Adding artist to: ' + (${song.title} ?: 'Unknown Song')"></p>
+
+<form th:action="@{/artists/add-to-song}" th:method="POST">
+    <input type="hidden" name="songId" th:value="${song.getTrackId()}">
+    <div th:each="artist : ${artists}">
+        <input type="radio" name="artistId" th:id="${artist.getId()}" th:value="${artist.getId()}">
+        <label th:for="${artist.getId()}" th:text="${artist.getFirstName() ?: 'Unnamed Artist'}"></label>
+        <br>
+    </div>
+    <br>
+    <input type="submit" value="Add Artist">
+</form>
+</body>
+</html>
