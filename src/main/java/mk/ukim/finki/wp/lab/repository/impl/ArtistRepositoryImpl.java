@@ -1,18 +1,16 @@
-package mk.ukim.finki.wp.lab.repository;
+package mk.ukim.finki.wp.lab.repository.impl;
 
 import mk.ukim.finki.wp.lab.bootstrap.DataHolder;
 import mk.ukim.finki.wp.lab.exception.ArtistNotFoundException;
-import mk.ukim.finki.wp.lab.exception.SongNotFoundException;
 import mk.ukim.finki.wp.lab.model.Artist;
 import mk.ukim.finki.wp.lab.model.Song;
 import org.springframework.stereotype.Repository;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ArtistRepository {
+public class ArtistRepositoryImpl {
     public List<Artist> findAll() {
         return DataHolder.artistList;
     }

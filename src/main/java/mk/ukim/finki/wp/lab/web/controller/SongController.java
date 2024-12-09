@@ -55,14 +55,9 @@ public class SongController {
 
         if (trackId == null) {
             this.songService.saveSong(title, genre, releaseYear, album);
-            return "redirect:/songs";
+        } else {
+            this.songService.update(title, genre, releaseYear, album);
         }
-
-        Song song = this.songService.findByTrackId(trackId).orElseThrow(() -> new SongNotFoundException(trackId));
-        song.setTitle(title);
-        song.setGenre(genre);
-        song.setReleaseYear(releaseYear);
-        song.setAlbum(albumService.findById(albumId).orElseThrow(() -> new AlbumNotFoundException(albumId)));
         return "redirect:/songs";
     }
 

@@ -39,12 +39,7 @@ public class ArtistController {
 
     @PostMapping("/add-to-song")
     public String addArtistToSong(@RequestParam Long songId, @RequestParam Long artistId) {
-        Song song = songService.findByTrackId(songId)
-                .orElseThrow(() -> new SongNotFoundException(songId));
-        Artist artist = artistService.findById(artistId)
-                .orElseThrow(() -> new ArtistNotFoundException(artistId));
-
-        songService.addArtistToSong(song, artist);
+        songService.addArtistToSong(songId, artistId);
         return "redirect:/songs";
     }
 }
